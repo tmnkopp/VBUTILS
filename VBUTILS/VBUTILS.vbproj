@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1F8D5B2E-F4B5-4A86-AC3C-20ED4E969448}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>VBUTILS.Module1</StartupObject>
+    <StartupObject>VBUTILS.Program</StartupObject>
     <RootNamespace>VBUTILS</RootNamespace>
     <AssemblyName>VBUTILS</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -69,7 +69,13 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Module1.vb" />
+    <Compile Include="Parser\Constants.vb" />
+    <Compile Include="Parser\Program.vb" />
+    <Compile Include="Parser\ICodeExtractor.vb" />
+    <Compile Include="Parser\ICodeFileProfile.vb" />
+    <Compile Include="Parser\ICodeViewer.vb" />
+    <Compile Include="Parser\IViewer.vb" />
+    <Compile Include="Program.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -85,6 +91,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Serializer\Serializer.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -106,5 +113,6 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
