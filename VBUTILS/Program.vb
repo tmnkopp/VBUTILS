@@ -1,7 +1,7 @@
 ﻿Module Program
     Public Sub Main()
 
-        Parser.Program.Run()
+        Serializer.Program.Run()
 
     End Sub
 
