@@ -2,20 +2,20 @@
 Imports System.Text
 Imports VBUTILS
 Imports VBUTILS.Common
-Namespace Parser
-
-
-    Public Interface ICodeParser
-        Sub Load(profile As ICodeParseProfile)
-        Sub Extract(extractor As ICodeExtractor)
+Namespace Formatter
+    Public Interface ICodeFormatter
+        Sub Format()
+    End Interface
+    Public Interface ICodeFormatter
+        Sub Load(loader As IFileLoader)
+        Sub Format(formatter As ICodeFormatter)
         Sub View(viewer As IViewer)
     End Interface
 
-    Public Class CodeParser
-        Implements ICodeParser
+    Public Class CodeFormatter
+        Implements ICodeFormatter
         Private _path As String
         Private _searchOption As String
-        Private _profile As ICodeParseProfile
         Private HashOfFiles As Hashtable = New Hashtable()
         Private sbContents As StringBuilder = New StringBuilder()
 
@@ -37,17 +37,9 @@ Namespace Parser
         End Property
         Public Sub New()
         End Sub
-        Public Sub New(profile As ICodeParseProfile)
-            Me._path = profile.Path
-            Me._searchOption = profile.SearchOption
-        End Sub
 
-        Public Sub Load(profile As ICodeParseProfile) Implements ICodeParser.Load
-            Me._path = profile.Path
-            Me._searchOption = profile.SearchOption
-        End Sub
 
-        Public Sub Extract(extractor As ICodeExtractor) Implements ICodeParser.Extract
+        Public Sub Extract(extractor As ICodeExtractor) Implements ICodeFormatter.Extract
             Dim dir As New DirectoryInfo($"{Me._path}")
             Dim files As FileInfo()
             If String.IsNullOrEmpty(_searchOption) Then

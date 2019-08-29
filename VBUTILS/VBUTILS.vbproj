@@ -48,9 +48,18 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -69,12 +78,20 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\IFileLoader.vb" />
+    <Compile Include="Data\DBContext.vb" />
+    <Compile Include="Data\Program.vb" />
+    <Compile Include="Common\Constants.vb" />
+    <Compile Include="Formatter\ICodeExtractor.vb" />
+    <Compile Include="Formatter\ICodeViewer.vb" />
+    <Compile Include="Common\IViewer.vb" />
+    <Compile Include="Formatter\Program.vb" />
+    <Compile Include="Models\Folder.vb" />
     <Compile Include="Parser\Constants.vb" />
     <Compile Include="Parser\Program.vb" />
     <Compile Include="Parser\ICodeExtractor.vb" />
     <Compile Include="Parser\ICodeFileProfile.vb" />
     <Compile Include="Parser\ICodeViewer.vb" />
-    <Compile Include="Parser\IViewer.vb" />
     <Compile Include="Program.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -112,6 +129,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
