@@ -26,6 +26,33 @@ Namespace Parser
     End Class
 
 
+    Public Class ControlByAttributeExtractor
+        Implements ICodeExtractor
+        Private _snippet As String
+        Public Sub New(Snippet As String)
+            _snippet = Snippet
+        End Sub
+        Public Function Extract(content As String) As String Implements ICodeExtractor.Extract
+            Dim SB As StringBuilder = New StringBuilder
+            Dim _return As String = ""
+            If content.Contains(_snippet) Then
+                content = Replace(content, "\r", "")
+                content = Replace(content, "\n", "")
+                content = Replace(content, "   ", "")
+                content = Replace(content, vbCrLf, "")
+                content = Replace(content, ">", $">{vbCrLf}")
+
+                Dim regex As Regex = New Regex($"<.*{_snippet}.*>", RegexOptions.Multiline)
+                Dim match As Match = regex.Match(content)
+                If match.Success Then
+                    _return = match.Value
+                End If
+            End If
+            Return _return
+        End Function
+    End Class
+
+
     Public Class ControlExtractor
         Implements ICodeExtractor
         Private _controlName As String

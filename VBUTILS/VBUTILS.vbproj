@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Common\Program.vb" />
     <Compile Include="Formatter\IRefactorProcess.vb" />
+    <Compile Include="Formatter\Program.vb" />
     <Compile Include="Formatter\RefactorAspxCode.vb" />
     <Compile Include="Formatter\RefactorSimple.vb" />
     <Compile Include="Parser\Constants.vb" />

@@ -9,12 +9,13 @@ Namespace Parser
             Dim codeViewer As ICodeParser = New CodeParser()
             Dim profile As CodeParseProfile = New CodeParseProfile()
             profile.Path = $"{Constants.FolderFF2018}"
-            profile.SearchOption = $"*SAOP*.aspx.vb"
+            profile.SearchOption = $"*SAOP*.aspx"
 
             codeViewer.Load(profile)
-            codeViewer.Extract(New GenericExtractor())
-            codeViewer.View(New ConsoleViewer("output_parser2.txt"))
+            codeViewer.Extract(New ControlByAttributeExtractor("12496"))
+            codeViewer.View(New NotepadViewer("output_parser_saop_controls.txt"))
             Console.Read()
+
         End Sub
     End Module
 
