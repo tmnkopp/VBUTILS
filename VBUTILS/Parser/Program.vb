@@ -5,15 +5,15 @@ Imports VBUTILS.Common
 
 Namespace Parser
     Module Program
-        Public Sub Run()
+        Public Sub RunParser()
             Dim codeViewer As ICodeParser = New CodeParser()
             Dim profile As CodeParseProfile = New CodeParseProfile()
-            profile.Path = $"{Constants.FolderDBArchive}"
-            profile.SearchOption = $"*db_update*.sql"
+            profile.Path = $"{Constants.FolderFF2018}"
+            profile.SearchOption = $"*SAOP*.aspx.vb"
 
             codeViewer.Load(profile)
-            codeViewer.Extract(New SnippetExtractor("fsma_FormMaster"))
-            codeViewer.View(New ConsoleViewer("output_db_update_fsma_formmaster.txt"))
+            codeViewer.Extract(New GenericExtractor())
+            codeViewer.View(New ConsoleViewer("output_parser2.txt"))
             Console.Read()
         End Sub
     End Module

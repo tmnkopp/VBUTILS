@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1F8D5B2E-F4B5-4A86-AC3C-20ED4E969448}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>VBUTILS.Formatter.Program</StartupObject>
+    <StartupObject>Sub Main</StartupObject>
     <RootNamespace>VBUTILS</RootNamespace>
     <AssemblyName>VBUTILS</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -71,6 +71,8 @@
   <ItemGroup>
     <Compile Include="Common\Program.vb" />
     <Compile Include="Formatter\IRefactorProcess.vb" />
+    <Compile Include="Formatter\RefactorAspxCode.vb" />
+    <Compile Include="Formatter\RefactorSimple.vb" />
     <Compile Include="Parser\Constants.vb" />
     <Compile Include="Parser\Program.vb" />
     <Compile Include="Parser\ICodeExtractor.vb" />

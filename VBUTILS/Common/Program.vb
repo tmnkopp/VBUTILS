@@ -2,18 +2,8 @@
 Imports System.Text
 
 Namespace Common
-
     Module Program
-        Public Sub Main()
-            'LOAD
-            'REFACTOR
-            'SAVE
-            Dim temp As List(Of String) = New List(Of String)
-            temp = EnumerateStatements()
-            Dim content As String = RefactorStatements(temp)
-
-            Save(content)
-            Console.Read()
+        Public Sub RunTest()
 
         End Sub
 

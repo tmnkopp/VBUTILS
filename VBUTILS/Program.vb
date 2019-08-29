@@ -3,7 +3,9 @@ Imports System.Text
 Imports System.Configuration
 Module Program
     Public Sub Main()
-
-        Data.Program.Run()
+        Formatter.Program.RunFormatter()
+        'Parser.Program.RunParser()
     End Sub
 End Module
+
+

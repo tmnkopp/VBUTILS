@@ -3,14 +3,15 @@ Imports System.Text
 Imports VBUTILS
 Namespace Formatter
     Module Program
-        Sub Main()
+        Public Sub RunFormatter()
             Dim Refactor As New RefactorProcess
             Dim result As String
-            result = Refactor.Load("c:\temp\input.txt", New RefactorSimple())
+            Dim file As String = $"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\code\CyberScope\FismaForms\2018\2018_A_SAOP_7.aspx"
+
+            result = Refactor.Load(file, New RefactorAspxCode())
             Refactor.Save(result)
         End Sub
     End Module
-
 
     Public Interface IRefactorStrategy
         Function Refactor(content As String) As String
@@ -26,9 +27,7 @@ Namespace Formatter
         Public Function Load(file As String, RefactorStrategy As IRefactorStrategy) As String Implements IRefactorProcess.Load
             Dim _line As String = $""
             Dim _return As StringBuilder = New StringBuilder
-            Dim p As New Process()
-            p.StartInfo = New ProcessStartInfo("notepad.exe", $"{file}")
-            p.Start()
+
 
             Using textReader As New System.IO.StreamReader($"{file}")
                 Do While textReader.Peek() <> -1
@@ -43,7 +42,7 @@ Namespace Formatter
         End Function
 
         Public Sub Save(content As String) Implements IRefactorProcess.Save
-            Dim FILE_NAME As String = $"C:\temp\output_1.txt"
+            Dim FILE_NAME As String = $"C:\temp\refactor_output_1.txt"
             If System.IO.File.Exists(FILE_NAME) = False Then
                 Dim fs As FileStream = File.Create(FILE_NAME)
                 fs.Close()
@@ -58,10 +57,5 @@ Namespace Formatter
         End Sub
     End Class
 
-    Public Class RefactorSimple
-        Implements IRefactorStrategy
-        Public Function Refactor(content As String) As String Implements IRefactorStrategy.Refactor
-            Return $"{content} !!!!REFACTORED!!! {vbNewLine}"
-        End Function
-    End Class
+
 End Namespace
