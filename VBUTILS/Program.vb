@@ -9,17 +9,15 @@ Imports VBUTILS.Data
 
 Module Program
     Public Sub Main()
-        Dim dbUtils As New DBUtils()
-        Dim str As String = dbUtils.dbLookUp("select code from fsma_QuestionTypes WHERE PK_QuestionTypeId = 43 ")
-        Dim view As New ConsoleViewer()
-        view.Execute(str)
-
-
-        ''Dim compiler As New CodeComplier()
-        ''compiler.Src = $"c:\temp\template\input.txt"
-        ''compiler.Dest = $"c:\temp\compiled\output.txt"
-        ''compiler.Compile(New CompileStrategy())
-        ''compiler.Save(New NotepadViewer(compiler.Dest))
+        ''Dim dbUtils As New DBUtils()
+        ''Dim str As String = dbUtils.dbLookUp("select code from fsma_QuestionTypes WHERE PK_QuestionTypeId = 43 ")
+        ''Dim view As New ConsoleViewer()
+        ''view.Execute(str)
+        Dim compiler As New CodeComplier()
+        compiler.Src = $"c:\temp\template\component.txt"
+        compiler.Dest = $"c:\temp\compiled\component-compiled.txt"
+        compiler.Compile(New CompileComponent())
+        compiler.Save(New NotepadViewer(compiler.Dest))
 
     End Sub
 End Module

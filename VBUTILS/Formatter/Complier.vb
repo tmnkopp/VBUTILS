@@ -9,12 +9,7 @@ Namespace Formatter
     Public Interface ICompileStrategy
         Function Execute(content As String)
     End Interface
-    Public Class CompileStrategy
-        Implements ICompileStrategy
-        Public Function Execute(content As String) As Object Implements ICompileStrategy.Execute
-            Return Replace(content, "[compile-me]", "compiled!!!")
-        End Function
-    End Class
+
     Public Class CodeComplier
         Implements ICompiler
         Dim _content As StringBuilder = New StringBuilder
@@ -51,7 +46,7 @@ Namespace Formatter
                     _line = textReader.ReadLine().TrimEnd
                     If Not String.IsNullOrEmpty(_line) Then
                         _line = compileStrat.Execute(_line)
-                        _content.Append($"{_line}")
+                        _content.Append($"{_line}{vbCrLf}")
                     End If
                 Loop
             End Using
