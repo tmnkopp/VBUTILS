@@ -72,7 +72,7 @@
   <ItemGroup>
     <Compile Include="Common\FileLoader.vb" />
     <Compile Include="Common\Program.vb" />
-    <Compile Include="Data\Program.vb" />
+    <Compile Include="Data\DBUtils.vb" />
     <Compile Include="Formatter\Complier.vb" />
     <Compile Include="Formatter\IRefactorProcess.vb" />
     <Compile Include="Formatter\Program.vb" />
