@@ -48,7 +48,7 @@ Namespace Parser
         End Sub
 
         Public Sub Extract(extractor As ICodeExtractor) Implements ICodeParser.Extract
-            Dim dir As New DirectoryInfo($"{Me._path}")
+            Dim dir As New DirectoryInfo($"{_path}")
             Dim files As FileInfo()
             If String.IsNullOrEmpty(_searchOption) Then
                 files = dir.GetFiles()

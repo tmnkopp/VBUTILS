@@ -69,7 +69,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\FileLoader.vb" />
     <Compile Include="Common\Program.vb" />
+    <Compile Include="Formatter\Complier.vb" />
     <Compile Include="Formatter\IRefactorProcess.vb" />
     <Compile Include="Formatter\Program.vb" />
     <Compile Include="Formatter\RefactorAspxCode.vb" />

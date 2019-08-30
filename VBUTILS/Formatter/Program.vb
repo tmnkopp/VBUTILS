@@ -3,10 +3,10 @@
         Public Sub RunFormatter()
             Dim Refactor As New RefactorProcess
             Dim result As String
-            Dim file As String = $"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\code\CyberScope\FismaForms\2018\2018_A_SAOP_7.aspx"
+            Dim file As String = $"c:\"
 
             result = Refactor.Load(file, New RefactorAspxCode())
-            Refactor.Save(result)
+            Refactor.Save("output.txt", result)
         End Sub
     End Module
 End Namespace

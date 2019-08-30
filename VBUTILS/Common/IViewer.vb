@@ -35,7 +35,7 @@ Namespace Common
         End Sub
 
         Public Sub Execute(ContentToView As String) Implements IViewer.Execute
-            Dim FILE_NAME As String = $"C:\temp\{_filename}"
+            Dim FILE_NAME As String = $"{_filename}"
             If System.IO.File.Exists(FILE_NAME) = False Then
                 Dim fs As FileStream = File.Create(FILE_NAME)
                 fs.Close()
