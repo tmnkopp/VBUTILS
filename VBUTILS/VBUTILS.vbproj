@@ -49,6 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Xml" />
@@ -71,11 +72,13 @@
   <ItemGroup>
     <Compile Include="Common\FileLoader.vb" />
     <Compile Include="Common\Program.vb" />
+    <Compile Include="Data\Program.vb" />
     <Compile Include="Formatter\Complier.vb" />
     <Compile Include="Formatter\IRefactorProcess.vb" />
     <Compile Include="Formatter\Program.vb" />
     <Compile Include="Formatter\RefactorAspxCode.vb" />
     <Compile Include="Formatter\RefactorSimple.vb" />
+    <Compile Include="Models\Folder.vb" />
     <Compile Include="Parser\Constants.vb" />
     <Compile Include="Parser\Program.vb" />
     <Compile Include="Parser\ICodeExtractor.vb" />

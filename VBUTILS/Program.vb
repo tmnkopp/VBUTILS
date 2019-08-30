@@ -5,16 +5,21 @@ Imports System.Text.RegularExpressions
 Imports System.Reflection
 Imports VBUTILS.Formatter
 Imports VBUTILS.Common
-
+Imports VBUTILS.Data
 
 Module Program
     Public Sub Main()
+        Dim dbUtils As New DBUtils()
+        Dim str As String = dbUtils.dbLookUp("select code from fsma_QuestionTypes WHERE PK_QuestionTypeId = 43 ")
+        Dim view As New ConsoleViewer()
+        view.Execute(str)
 
-        Dim compiler As New CodeComplier()
-        compiler.Src = $"c:\temp\template\input.txt"
-        compiler.Dest = $"c:\temp\compiled\output.txt"
-        compiler.Compile(New CompileStrategy())
-        compiler.Save(New NotepadViewer(compiler.Dest))
+
+        ''Dim compiler As New CodeComplier()
+        ''compiler.Src = $"c:\temp\template\input.txt"
+        ''compiler.Dest = $"c:\temp\compiled\output.txt"
+        ''compiler.Compile(New CompileStrategy())
+        ''compiler.Save(New NotepadViewer(compiler.Dest))
 
     End Sub
 End Module

@@ -3,25 +3,22 @@ Imports System.Text
 Imports System.Configuration
 
 Namespace Data
-    Module Program
-        Public Sub Run()
-            Dim sConn As String = ConfigurationManager.ConnectionStrings("CBUTILS").ToString()
-            Dim sSql As String = "SELECT * From Folders"
+    Public Class DBUtils
+        Public Function dbLookUp(sSql As String) As String
+            Dim sConn As String = ConfigurationManager.ConnectionStrings("Cyberscope123").ToString()
             Dim oConn As SqlConnection = New SqlConnection(sConn)
-
+            Dim sRetSB As New StringBuilder
             oConn.Open()
-
             Using oCmd As SqlCommand = New SqlCommand(sSql, oConn)
                 Using oRead As SqlDataReader = oCmd.ExecuteReader()
-                    Dim sRetSB As New StringBuilder
                     While oRead.Read
                         sRetSB.Append(oRead.GetValue(0).ToString)
                     End While
                 End Using
             End Using
-
             oConn.Close()
             oConn.Dispose()
-        End Sub
-    End Module
+            Return sRetSB.ToString()
+        End Function
+    End Class
 End Namespace
