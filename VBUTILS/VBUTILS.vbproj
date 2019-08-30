@@ -79,7 +79,7 @@
     <Compile Include="Parser\ICodeExtractor.vb" />
     <Compile Include="Parser\ICodeFileProfile.vb" />
     <Compile Include="Parser\ICodeViewer.vb" />
-    <Compile Include="Parser\IViewer.vb" />
+    <Compile Include="Common\IViewer.vb" />
     <Compile Include="Program.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

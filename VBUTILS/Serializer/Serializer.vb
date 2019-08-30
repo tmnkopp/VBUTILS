@@ -3,7 +3,7 @@ Imports System.Text
 Imports System.Xml.Serialization
 Namespace Serializer
     Module Program
-        Public Sub Run()
+        Public Sub RunSerializer()
             Console.Write($"SerializerProgram")
 
             Dim per As Person = New Person()

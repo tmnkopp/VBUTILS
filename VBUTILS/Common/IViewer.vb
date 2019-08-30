@@ -2,6 +2,7 @@
 Imports VBUTILS
 Namespace Common
 
+
     Public Interface IViewer
         Sub Execute(ContentToView As String)
     End Interface
@@ -11,7 +12,7 @@ Namespace Common
         Private _outputname As String
 
         Public Sub New()
-            _outputname = "formatter_output.txt"
+            _outputname = "output.txt"
         End Sub
         Public Sub New(OutputName As String)
             _outputname = OutputName
