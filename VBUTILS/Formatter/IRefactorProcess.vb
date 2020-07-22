@@ -3,7 +3,6 @@ Imports System.Text
 Imports VBUTILS
 Namespace Formatter
 
-
     Public Interface IRefactorStrategy
         Function Refactor(content As String) As String
     End Interface

@@ -14,11 +14,38 @@ Module Program
         ''Dim view As New ConsoleViewer()
         ''view.Execute(str)
         Dim compiler As New CodeComplier()
-        compiler.Src = $"c:\temp\template\component.txt"
+        compiler.Src = $"c:\temp\template\component-test.txt"
         compiler.Dest = $"c:\temp\compiled\component-compiled.txt"
         compiler.Compile(New CompileComponent())
         compiler.Save(New NotepadViewer(compiler.Dest))
 
+    End Sub
+    Public Sub ChangeOMBsubStatus(ByVal sComp As String, ByVal sStat As String)
+
+        Using oCmd As SqlCommand = New SqlCommand("UPDATE fsma_ReportingCycle_Components SET Status_Code = @Status_Code WHERE PK_ReportingCycle_Component = @PK_ReportingCycle_Component", oConn)
+            oCmd.Parameters.AddWithValue("@Status_Code", IIf(sStat = "IRC", "SUBO", sStat))
+            oCmd.Parameters.AddWithValue("@PK_ReportingCycle_Component", sComp)
+            oCmd.ExecuteNonQuery()
+        End Using
+        Using oCmd As SqlCommand = New SqlCommand("UPDATE fsma_OrgSubmissions SET Status_Code = @Status_Code WHERE FK_ReportingCycle_Component =  @FK_ReportingCycle_Component", oConn)
+            oCmd.Parameters.AddWithValue("@FK_ReportingCycle_Component", sComp)
+            oCmd.Parameters.AddWithValue("@Status_Code", IIf(sStat = "IRC", "SUBO", sStat))
+            oCmd.ExecuteNonQuery()
+        End Using
+
+        If sStat = "IRC" Then
+            Using oCmd As SqlCommand = New SqlCommand("INSERT INTO fsma_WorkFlowHist SELECT TOP 1 PK_PrimeKey, WFtype, PK_UserID, EventDateTime, Status_Code FROM fsma_WorkFlowHist WHERE WFtype='AGENCY' AND Status_Code = 'SUBO' AND PK_PrimeKey = @PK_PrimeKey ORDER BY PK_WorkFlowHist DESC", oConn)
+                oCmd.Parameters.AddWithValue("@PK_PrimeKey", sComp)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Else
+            Using oCmd As SqlCommand = New SqlCommand("INSERT INTO fsma_WorkFlowHist (PK_PrimeKey, WFtype, PK_UserID, EventDateTime, Status_Code) VALUES (@PK_PrimeKey, @WFtype, @PK_UserID, GetDate(), @Status_Code )", oConn)
+                oCmd.Parameters.AddWithValue("@PK_PrimeKey", sComp)
+                oCmd.Parameters.AddWithValue("@WFtype", "AGENCY")
+                oCmd.Parameters.AddWithValue("@Status_Code", sStat)
+                oCmd.ExecuteNonQuery()
+            End Using
+        End If
     End Sub
 End Module
 
@@ -35,37 +62,5 @@ Public Class Invoker
         Console.Write("Sub1")
     End Sub
 End Class
-
-''''COMMAND: >type -arg1 the first argument -arg2 second -dir c:\asdf\asdf\asdf.txt
-''''COMMAND: >format -in c:\asdf\asdf\asdf.txt -out c:\temp\output.txt -fmt ''
-''''COMMAND: >type -arg1 the first argument -arg2 second -dir c:\asdf\asdf\asdf.txt
-''''Get Type
-''''Invoke Init Method w/ arguments
-'''' -- Init Args:KeyValue (-dir: -file: -format: )
-'''' -- KeyValue Arg Parser: ()
-
-
-'Dim _assembly As Assembly = Assembly.Load("VBUTILS")
-'Dim _type As Type = _assembly.GetType("VBUTILS.Invoker")
-'Dim _constructor As ConstructorInfo = _type.GetConstructor(Type.EmptyTypes)
-'Dim _object As Object = _constructor.Invoke(Nothing)
-'Dim _mainMethod = _type.GetMethod("Sub1", BindingFlags.Public Or BindingFlags.Instance)
-'Dim result As String = DirectCast(_mainMethod.Invoke(_object, Nothing), String)
-
-'Formatter.Program.RunFormatter()
-
-'Parser.Program.RunParser()
-
-'Dim cArgs As String = Console.ReadLine()
-'
-'Dim args() As String = Regex.Split(cArgs, "- ")
-'
-'For Each arg As String In args
-'    If arg.Contains("-format") Then
-'        Formatter.Program.RunFormatter()
-'    End If
-'Next
-'
-'Parser.Program.RunParser()
 
 
